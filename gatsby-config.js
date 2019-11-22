@@ -2,17 +2,19 @@ require("dotenv").config();
 const queries = require("./src/utils/algolia");
 const config = require("./config");
 const plugins = [
-  'gatsby-plugin-sitemap',
-  'gatsby-plugin-sharp',
+  "gatsby-plugin-sitemap",
+  "gatsby-plugin-sharp",
+  "gatsby-transformer-sharp",
+  "gatsby-transformer-remark",
   {
     resolve: `gatsby-plugin-layout`,
     options: {
-        component: require.resolve(`./src/templates/docs.js`)
+      component: require.resolve(`./src/templates/docs.js`)
     }
   },
-  'gatsby-plugin-styled-components',
+  "gatsby-plugin-styled-components",
   {
-    resolve: 'gatsby-plugin-mdx',
+    resolve: "gatsby-plugin-mdx",
     options: {
       gatsbyRemarkPlugins: [
         {
@@ -23,20 +25,27 @@ const plugins = [
           }
         },
         {
-          resolve: 'gatsby-remark-copy-linked-files'
+          resolve: "gatsby-remark-copy-linked-files"
         }
       ],
       extensions: [".mdx", ".md"]
     }
   },
-  'gatsby-plugin-emotion',
-  'gatsby-plugin-remove-trailing-slashes',
-  'gatsby-plugin-react-helmet',
+  "gatsby-plugin-emotion",
+  "gatsby-plugin-remove-trailing-slashes",
+  "gatsby-plugin-react-helmet",
   {
     resolve: "gatsby-source-filesystem",
     options: {
       name: "docs",
       path: `${__dirname}/content/`
+    }
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: `${__dirname}/src/components/images`
     }
   },
   {
@@ -47,9 +56,9 @@ const plugins = [
       // Puts tracking script in the head instead of the body
       head: true,
       // enable ip anonymization
-      anonymize: false,
-    },
-  },
+      anonymize: false
+    }
+  }
 ];
 if (config.header.search && config.header.search.enabled && config.header.search.algoliaAppId && config.header.search.algoliaAdminKey) {
   plugins.push({

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import GitHubButton from 'react-github-btn'
 import Link from './link';
 import './styles.css';
@@ -18,32 +19,39 @@ if(isSearchEnabled && config.header.search.indexName) {
 
 import Sidebar from "./sidebar";
 
-const Header = ({location}) => (
+const Header = ({ location }) => (
   <StaticQuery
-    query={
-      graphql`
-        query headerTitleQuery {
-          site {
-            siteMetadata {
-              headerTitle
-              githubUrl
-              helpUrl
-              tweetText
-              logo {
-                link
-                image
-              }
-              headerLinks {
-                link
-                text
-              }
+    query={graphql`
+      query headerTitleQuery {
+        site {
+          siteMetadata {
+            headerTitle
+            githubUrl
+            helpUrl
+            tweetText
+            logo {
+              link
+              image
+            }
+            headerLinks {
+              link
+              text
             }
           }
         }
-        `}
-    render={(data) => {
-      const logoImg = require('./images/logo.svg');
-      const twitter = require('./images/twitter.svg');
+        file(relativePath: { eq: "ck-icon-white.png" }) {
+          childImageSharp {
+            # Specify the image processing specifications right in the query.
+            # Makes it trivial to update as your page's design changes.
+            fixed(width: 80, height: 80) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const twitter = require("./images/twitter.svg");
       const {
         site: {
           siteMetadata: {
@@ -52,72 +60,110 @@ const Header = ({location}) => (
             helpUrl,
             tweetText,
             logo,
-            headerLinks,
+            headerLinks
           }
-        }
+        },
+        file
       } = data;
-      const finalLogoLink = logo.link !== '' ? logo.link : '/';
+      const finalLogoLink = logo.link !== "" ? logo.link : "/";
       return (
-        <div className={'navBarWrapper'}>
-          <nav className={'navbar navbar-default navBarDefault'}>
-            <div className={'navbar-header navBarHeader'}>
-              <Link to={finalLogoLink} className={'navbar-brand navBarBrand'}>
-                {logo.image !== '' ?
-                  (<img className={'img-responsive'} src={logo.image} alt={'logo'} />)
-                  :
-                  (<img className={'img-responsive'} src={logoImg} alt={'logo'} />)
-                }
-                <div className={"headerTitle"} dangerouslySetInnerHTML={{__html: headerTitle}} />
+        <div className={"navBarWrapper"}>
+          <nav className={"navbar navbar-default navBarDefault"}>
+            <div className={"navbar-header navBarHeader"}>
+              <Link to={finalLogoLink} className={"navbar-brand navBarBrand"}>
+                <Img fixed={file.childImageSharp.fixed} />
+                <div
+                  className={"headerTitle"}
+                  dangerouslySetInnerHTML={{ __html: headerTitle }}
+                />
               </Link>
-              <button type="button" className={'navbar-toggle collapsed navBarToggle'} data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span className={'sr-only'}>Toggle navigation</span>
-                <span className={'icon-bar'}></span>
-                <span className={'icon-bar'}></span>
-                <span className={'icon-bar'}></span>
+              <button
+                type="button"
+                className={"navbar-toggle collapsed navBarToggle"}
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar"
+              >
+                <span className={"sr-only"}>Toggle navigation</span>
+                <span className={"icon-bar"}></span>
+                <span className={"icon-bar"}></span>
+                <span className={"icon-bar"}></span>
               </button>
             </div>
             {isSearchEnabled ? (
-              <div className={'searchWrapper hidden-xs navBarUL'}>
+              <div className={"searchWrapper hidden-xs navBarUL"}>
                 <Search collapse indices={searchIndices} />
               </div>
-              ): null}
-            <div id="navbar" className={'navbar-collapse collapse navBarCollapse'}>
-              <div className={'visible-xs'}>
+            ) : null}
+            <div
+              id="navbar"
+              className={"navbar-collapse collapse navBarCollapse"}
+            >
+              <div className={"visible-xs"}>
                 <Sidebar location={location} />
-                <hr/>
+                <hr />
                 {isSearchEnabled ? (
-                  <div className={'searchWrapper navBarUL'}>
+                  <div className={"searchWrapper navBarUL"}>
                     <Search collapse indices={searchIndices} />
                   </div>
-                  ): null}
+                ) : null}
               </div>
-              <ul className={'nav navbar-nav navBarUL navBarNav navbar-right navBarULRight'}>
+              <ul
+                className={
+                  "nav navbar-nav navBarUL navBarNav navbar-right navBarULRight"
+                }
+              >
                 {headerLinks.map((link, key) => {
-                  if(link.link !== '' && link.text !== '') {
-                    return(
+                  if (link.link !== "" && link.text !== "") {
+                    return (
                       <li key={key}>
-                        <a href={link.link} target="_blank" dangerouslySetInnerHTML={{__html: link.text}} />
+                        <a
+                          href={link.link}
+                          target="_blank"
+                          dangerouslySetInnerHTML={{ __html: link.text }}
+                        />
                       </li>
                     );
                   }
                 })}
-                {helpUrl !== '' ?
-                  (<li><a href={helpUrl}><img src={help} alt={'Help icon'}/></a></li>) : null
-                }
-                {(tweetText !== '' || githubUrl !== '') ?
-                  (<li className="divider hidden-xs"></li>): null
-                }
-                {tweetText !== '' ?
-                  (<li>
-                    <a href={'https://twitter.com/intent/tweet?&text=' + tweetText} target="_blank">
-                      <img className={'shareIcon'} src={twitter} alt={'Twitter'} />
+                {helpUrl !== "" ? (
+                  <li>
+                    <a href={helpUrl}>
+                      <img src={help} alt={"Help icon"} />
                     </a>
-                   </li>) : null
-                }
-                {githubUrl !== '' ?
-                  (<li className={'githubBtn'}>
-                    <GitHubButton href={githubUrl} data-show-count="true" aria-label="Star on GitHub">Star</GitHubButton>
-                  </li>) : null}
+                  </li>
+                ) : null}
+                {tweetText !== "" || githubUrl !== "" ? (
+                  <li className="divider hidden-xs"></li>
+                ) : null}
+                {tweetText !== "" ? (
+                  <li>
+                    <a
+                      href={
+                        "https://twitter.com/intent/tweet?&text=" + tweetText
+                      }
+                      target="_blank"
+                    >
+                      <img
+                        className={"shareIcon"}
+                        src={twitter}
+                        alt={"Twitter"}
+                      />
+                    </a>
+                  </li>
+                ) : null}
+                {githubUrl !== "" ? (
+                  <li className={"githubBtn"}>
+                    <GitHubButton
+                      href={githubUrl}
+                      data-show-count="true"
+                      aria-label="Star on GitHub"
+                    >
+                      Star
+                    </GitHubButton>
+                  </li>
+                ) : null}
               </ul>
             </div>
           </nav>
