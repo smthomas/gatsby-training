@@ -29,7 +29,7 @@ primarily for JavaScript, but it can transform front-end assets like HTML,
 CSS, and images if the corresponding loaders are included. Webpack takes
 modules with dependencies and generates static assets representing those modules.
 
-Gatsby comes with it's own Webpack config but gives you the ability to override it.
+Gatsby comes with its own Webpack config but gives you the ability to override it.
 Webpack configuration has taken the sanity from many brave developers, so not
 having to deal with setting up the default conifiguration is a huge time
 (and sanity) saver.
