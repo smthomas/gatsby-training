@@ -62,7 +62,7 @@ site again and look at how the images load in.
 Part of the reason Gatsby seems so fast is that it is actually preloading the
 next page before you even click the link to navigate there! Open up your Network
 tab in your web developer tools in your Browser. Now scroll down a Gatsby site
-and you will see network requests firing off. This makes using Gatby feel like
+and you will see network requests firing off. This makes using Gatsby feel like
 you are using an app, not navigating a website.
 
 
