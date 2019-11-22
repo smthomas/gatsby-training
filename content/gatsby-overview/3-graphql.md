@@ -7,8 +7,8 @@ metaDescription: "Learn about and experiment with GraphQL"
 > GraphQL is a query language for your API
 
 You are probably familiar with SQL, which is a query language for your databases.
-GraphQL is a query language for your API's. This means you can query various
-API's using the same syntax. You can every query across multiple API's in the
+GraphQL is a query language for your APIs. This means you can query various
+APIs using the same syntax. You can even query across multiple APIs in the
 same GraphQL query. In the background GraphQL will take your query, make the
 necessary API calls (based on the GraphQL schema) and then give you the results
 in the expected JSON format.
