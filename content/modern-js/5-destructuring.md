@@ -8,9 +8,9 @@ metaDescription: "Learn about JS Destructuring"
 makes it possible to unpack values from arrays, or properties from objects,
 into distinct variables.
 
-This is very powerful as it gives you incredibly flexibility in dealing with
+This is very powerful as it gives you incredible flexibility in dealing with
 variables in your JavaScript code. It's also incredibly frustrating when you
-are just learning it and can't figure out how the read the sometimes confusing
+are just learning it and can't figure out how to read the sometimes confusing
 syntax!
 
 Below are some examples of destructuring. For more detailed information,
