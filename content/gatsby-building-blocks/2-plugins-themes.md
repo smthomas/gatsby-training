@@ -70,10 +70,10 @@ You can view the [Plugins Docs](https://www.gatsbyjs.org/docs/plugins) or
 ## Themes
 
 A Gatsby theme is not equivalent to a theme in the Drupal or Wordpress world
-(though there is somee overlap). A Gatsby theme is a prepackaged set of features.
+(though there is some overlap). A Gatsby theme is a prepackaged set of features.
 A Gatsby theme can contain functionality, data sourcing, and UI elements.
 
-Gatsby Themes are also meant to be able to be added on top of each other. For instance,
+Gatsby themes are also meant to be able to be added on top of each other. For instance,
 you might have a Gatsby theme that adds blog functionality on your site, and another
 Gatsby theme that adds eCommerce functionality on your site. These themes can be used
 alongside of each other to serve difference purposes.
