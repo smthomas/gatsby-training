@@ -27,7 +27,7 @@ import line to the `gatsby-browser.js` file in the root of the project.
 
 The `gatsby-browser.js` file is a special file that allows Gatsby to interact with
 the browser through various API's. You can read more about the
-[Browers APIs](https://www.gatsbyjs.org/docs/browser-apis/).
+[Browser APIs](https://www.gatsbyjs.org/docs/browser-apis/).
 
 ## SASS
 
@@ -99,5 +99,5 @@ decide to move some (or all of the CSS) to your SASS file. Don't spend too much
 time on this though as we still have other types of styles to explore.
 
 **Note:** You may notice there are some inline styles in some components that
-might make it difficult to style evereything you want. We will discuss these
+might make it difficult to style everything you want. We will discuss these
 issues soon.
