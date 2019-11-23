@@ -15,7 +15,7 @@ together your site.
 
 ## A Paradigm Shift
 
-Because of this component based approach, your HTML, CSS, and JS is not much
+Because of this component based approach, your HTML, CSS, and JS is now much
 tightly coupled than it was before. Where in the past, you would use CSS classes
 on HTML elements similar to the markup below.
 
